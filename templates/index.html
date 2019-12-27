@@ -1,0 +1,93 @@
+{% extends "layout.html" %}
+{% block body %}
+<header class="bg-{{panel_class}} text-center py-5 mb-4" onclick="location.href='/'">
+  <div class="container">
+      <h1 class="font-weight-light text-white">Transition Graph</h1>
+  </div>
+</header>
+<br>
+<div class="col-sm-4 ">
+    {% include 'filter/index.html' %}
+</div>
+<div class="col-sm-8 " >
+    {% include 'data/index.html' %}
+</div>
+<div class="col-sm-12" >
+    {% include 'network/index.html' %}
+</div>
+
+
+<!--<divd class="ajax_module_plot"-->
+     <!--module="transitionFrequency"-->
+     <!--type = "order"-->
+     <!--size = "6"-->
+     <!--titile = "Частота переходов пользователей с покупками"-->
+<!--&gt;-->
+<!--</divd>-->
+
+<!--<divd class="ajax_module_plot"-->
+     <!--module="transitionFrequency"-->
+     <!--type = "dead"-->
+     <!--size = "6"-->
+     <!--titile = "Частота переходов пользователей без покупок"-->
+<!--&gt;-->
+<!--</divd>-->
+
+<script>
+
+jQuery(document).ready(function ($) {
+
+    ///plotly/transitionFrequency/order/6/Привет%20мир
+
+    $('.ajax_module_plot').each(function () {
+
+        var module = $(this).attr('module')
+        var type = $(this).attr('type')
+        var size = $(this).attr('size')
+        var titile = $(this).attr('titile')
+
+
+        var el = $(this)
+        setTimeout(function () {
+            $.get("/plotly/"+module+"/"+type+"/"+size+"/"+titile, function (data) {
+                el.html(data)
+            })
+        },2000)
+
+
+    })
+
+
+    window.myDiagram.addDiagramListener("ObjectSingleClicked", function (e, GraphObjec) {
+        var part = e.subject.part;
+        var code = ''
+        for( k in myDiagram.model.nodeDataArray ){
+            if(myDiagram.model.nodeDataArray[k]['id']==part.$w){
+                code = myDiagram.model.nodeDataArray[k]['code']
+            }
+        }
+
+
+
+
+        console.log(window.last_code,code)
+
+        if(code!=''){
+
+            window.last_code = code
+
+            preloader.show()
+            $.get('/point/{{type}}/{{os_name}}/{{date_from}}/{{date_to}}/'+code, initOneWayLine)
+            $.get('/point/{{type}}/{{os_name}}/{{date_from}}/{{date_to}}/'+code, loadToTable)
+        }
+    });
+
+
+    preloader.show()
+    $.get('/date/{{type}}/{{os_name}}/{{date_from}}/{{date_to}}', generateGraph)
+})
+
+</script>
+
+
+{% endblock %}

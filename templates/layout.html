@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+      <!-- Bootstrap CSS -->
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.css">
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+  <script>
+        window.preloader = {
+            show:function(){
+                jQuery('#loading').fadeIn(400)
+            },
+            hide:function(){
+                jQuery('#loading').fadeOut(400)
+            }
+        }
+  </script>
+
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+
+    <script src="/static/release/go.js"></script>
+    <script src="/static/js/LinkLabelDraggingTool.js"></script>
+
+
+    <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+
+
+    <title> </title>
+  </head>
+  <body>
+<!-- Navigation -->
+<!--<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">-->
+  <!--<div class="container">-->
+    <!--<a class="navbar-brand" href="#">Full Silider Bs.4.1.1 by Luckmoshy</a>-->
+    <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">-->
+          <!--<span class="navbar-toggler-icon"></span>-->
+        <!--</button>-->
+    <!--<div class="collapse navbar-collapse" id="navbarResponsive">-->
+      <!--<ul class="navbar-nav ml-auto">-->
+        <!--<li class="nav-item active">-->
+          <!--<a class="nav-link" href="#">Home-->
+                <!--<span class="sr-only">(current)</span>-->
+              <!--</a>-->
+        <!--</li>-->
+        <!--<li class="nav-item">-->
+          <!--<a class="nav-link" href="#">About</a>-->
+        <!--</li>-->
+        <!--<li class="nav-item">-->
+          <!--<a class="nav-link" href="#">Services</a>-->
+        <!--</li>-->
+        <!--<li class="nav-item">-->
+          <!--<a class="nav-link" href="#">Contact</a>-->
+        <!--</li>-->
+      <!--</ul>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</nav>-->
+
+    <!-- Page Content -->
+    <section class=" text-center">
+          <div class="container">
+              {% with messages = get_flashed_messages() %}
+                  {% if messages %}
+                    <ul class="list-group">
+                        <li class="list-group-item list-group-item-danger">{{ messages[-1] }}</li>
+                    </ul>
+                  {% endif %}
+              {% endwith %}
+          </div>
+    </section>
+    <!-- Page Content -->
+
+    {% block body %}{% endblock %}
+
+    <!-- /.container -->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!--<script type="text/javascript" src="/static/js/vis.js"></script>-->
+
+
+    <div class="float_box alert
+      {% if type=='order' %}
+          alert-success
+      {% else %}
+         alert-danger
+      {% endif %}
+    " role="alert">
+       {% if type=='order' %}
+        Пути ведущие к заказу c <i class="btn btn-default">{{date_from}}</i> по <i class="btn btn-default">{{date_to}}</i>
+      {% else %}
+        Пути ухода  c <i class="btn btn-default">{{date_from}}</i> по <i class="btn btn-default">{{date_to}}</i>
+      {% endif %}
+    </div>
+
+    <script src="/static/js/main.js?r=3"></script>
+
+    <link href="/static/css/main.css" rel="stylesheet" type="text/css">
+
+    <div id="loading" style="display: none">
+        <div id="box_center">
+            <div id="Gen" class="marginLeft">
+                <div class="block" id="rotate_01"></div>
+                <div class="block" id="rotate_02"></div>
+                <div class="block" id="rotate_03"></div>
+                <div class="block" id="rotate_04"></div>
+                <div class="block" id="rotate_05"></div>
+                <div class="block" id="rotate_06"></div>
+                <div class="block" id="rotate_07"></div>
+                <div class="block" id="rotate_08"></div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+  </body>
+</html>

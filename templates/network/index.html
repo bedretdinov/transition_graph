@@ -1,0 +1,22 @@
+<div class="panel-group py-5" >
+    <div class="panel panel-{{panel_class}}">
+      <div class="panel-heading">
+          <b>
+              {% if type=='order' %}
+              Пути ведущие к заказу c <i class="btn btn-default">{{date_from}}</i> по <i class="btn btn-default">{{date_to}}</i>
+              {% else %}
+                Пути ухода  c <i class="btn btn-default">{{date_from}}</i> по <i class="btn btn-default">{{date_to}}</i>
+              {% endif %}
+          </b>
+      </div>
+      <div class="panel-body">
+           <div id="sample" onload="init()" >
+              <div id="myDiagramDiv" style="background: white; width: 50%; height: 58vh;float: left" ></div>
+              <div id="myDiagramDiv2" style="background: white; width: 50%; height: 58vh;float: left" ></div>
+            </div>
+      </div>
+    </div>
+</div>
+<script>
+    {% include 'network/main.js' %}
+</script>
